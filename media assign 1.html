@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        main{
+            width: auto;
+            height: 500px;
+            margin: 20px;
+           
+           
+        }
+        [id $="container"]{
+            float: left;
+            margin:  10px;
+            
+            
+          
+        }
+
+        #Acontainer{
+          margin: 150px;
+           
+        }
+        
+
+        #audbtn{
+            margin-top: 400px;
+            
+        }
+    </style>
+    <script>
+        var getAudioTime;
+        function init(){
+            var vid = document.getElementById("vid");
+            document.getElementById("playbtn").addEventListener("click",function(){
+                vid.play();
+            })
+            document.getElementById("pausebtn").addEventListener("click",function(){
+                vid.pause();
+            })
+            document.getElementById("stopbtn").addEventListener("click",function(){
+               vid.currentTime=0;
+                vid.pause();
+            })
+            document.getElementById("maxbtn").addEventListener("click",function(){
+               vid.width= 760
+                
+            })
+            document.getElementById("minbtn").addEventListener("click",function(){
+               vid.width =  360
+            })
+            document.getElementById("defbtn").addEventListener("click",function(){
+               vid.width =  560
+            })
+
+            var aud = document.getElementById("aud");
+            document.getElementById("playaud").addEventListener("click",function(){
+               aud.play();
+            })
+            document.getElementById("pauseaud").addEventListener("click",function(){
+               aud.pause();
+               console.log(aud.currentTime);
+               window.localStorage.setItem("PausedTime",aud.currentTime);
+             
+            })
+            document.getElementById("stopaud").addEventListener("click",function(){
+               aud.currentTime=0
+                aud.pause();
+                
+            })
+            document.getElementById("resumeaud").addEventListener("click",function(){
+               
+               var paused_Time = window.localStorage.getItem("PausedTime") ;
+               aud.currentTime = paused_Time;
+               console.log(aud.currentTime);
+               aud.play();
+                
+            })
+
+            
+        }
+    </script>
+</head>
+<body onload="init()">
+    <main>
+        <div id = "Acontainer">
+            <audio id = "aud" controls >
+                <source src ="Symphony No.6 (1st movement).mp3">
+            </audio>
+            <div id="audbtns">
+                <button id ="playaud">Play</button>
+                <button id ="pauseaud">Pause</button>
+                <button id ="resumeaud">Resume</button>
+                <button id ="stopaud">Stop</button>
+            </div>
+            
+        </div>
+           
+       
+            
+    <div id="Vcontainer">
+        <video id = "vid" poster="antman.jpg" controls>
+            <source src = "html5.webm" >
+            <source src = "html5.mp4">
+        
+        </video>
+        <hr>
+            <button id ="playbtn">Play</button>
+            <button id ="pausebtn">Pause/Resume</button>
+            <button id ="maxbtn">Maximize</button>
+            <button id ="minbtn">Minimize</button>
+            <button id ="defbtn">Default</button>
+            <button id ="stopbtn">Stop</button>
+        </hr>  
+       
+    </div>
+    </main>
+   
+
+    
+        
+    
+
+</body>
+</html>
